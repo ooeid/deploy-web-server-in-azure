@@ -87,21 +87,22 @@ packer build server.json
 
 ## :pushpin:Create and Update Azure Resouces with Terraform Template
 
-#### :large_blue_diamond: Specify the Variables :large_blue_diamond:
+#### :large_blue_diamond: Variables :large_blue_diamond:
 
 To use variables for your main.tf, you can specify your variables like below in your vars.tf file.
 
 ```tf
-variable "environment"{
-  description = "The environment should be used for all resources in this example"
-  default = "test"
+variable "prefix" {
+  description = "The prefix which should be used for all resources in this example"
+  default = "udacity"
 }
 ```
+
 
 And in your main.tf, you can call the variables like
 
 ```tf
-var.environment
+var.prefix
 ```
 
 #### :large_blue_diamond: Deploy the Infrastructure Using Terraform :large_blue_diamond:
@@ -124,6 +125,11 @@ az login
 Remember to copy the tenant id and export it to the environment like the last step. Then run the following to deploy the terraform template.
 
 ```bash
+az policy assignment list
+```
+![image](https://user-images.githubusercontent.com/57246653/127723832-74988fc5-17ac-4c99-9b5e-89ebf4587c81.png)
+
+```bash
 terraform plan -out solution.plan
 ```
 
@@ -133,22 +139,14 @@ terraform plan -out solution.plan
 terraform apply
 ```
 
+![terraform output](https://dl3.pushbulletusercontent.com/9laUe5ITAIKW0bpB95sqPNvrGGXIM7ZD/image.png)
+
 Once you have deployed the infrastructure. You can go to the Azure portal to check the resources. Once you have finished, remember to destroy these resources.
 
 ```bash
 terraform destroy
 ```
 
-## Output
-
-If you succeeded in deploying the resources, it will looks like below
-
-![terraform output](https://dl3.pushbulletusercontent.com/9laUe5ITAIKW0bpB95sqPNvrGGXIM7ZD/image.png)
-
-You can also check whether these resources are deployed by looking at the Azure portal. The results will look like this.
-
-
-In the terminal, type `terraform show` to check the resources
 
 ```bash
 terraform show
