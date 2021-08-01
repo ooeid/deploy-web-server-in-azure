@@ -125,9 +125,16 @@ az login
 Remember to copy the tenant id and export it to the environment like the last step. Then run the following to deploy the terraform template.
 
 ```bash
+az policy definition create --name LinuxPasswordPolicy --subscription c28ed0f0-cbce-41fa-9cfa-f14da67960ac --mode all --rules policy.json
+```
+
+![image](https://user-images.githubusercontent.com/57246653/127755268-b5c3a7e9-76ff-4c76-9d2e-ef413847f147.png)
+
+
+```bash
 az policy assignment list
 ```
-![image](https://user-images.githubusercontent.com/57246653/127723832-74988fc5-17ac-4c99-9b5e-89ebf4587c81.png)
+![image](https://user-images.githubusercontent.com/57246653/127755289-a9a17e84-4140-4253-a411-3e25cebeca8e.png)
 
 ```bash
 terraform plan -out solution.plan
